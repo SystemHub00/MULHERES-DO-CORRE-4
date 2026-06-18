@@ -616,16 +616,11 @@ TEMPLATE_WIZARD = """\
                                 </select>
                             </div>
 
-                           <!-- 1. Selecionar curso -->
-                            <div class="form-group full">
-                                <label for="curso_select">Selecione o curso *</label>
-                                <select id="curso_select" name="curso_select">
-                                    <option value="" selected disabled>Selecione um curso</option>
-                                    {% for curso in cursos_disponiveis %}
-                                    <option value="{{ curso.id }}">
-                                        {{ curso.nome }}
-                                    </option>
-                                    {% endfor %}
+                            <!-- 2. Selecionar local -->
+                            <div class="form-group full" id="local-select-group">
+                                <label for="local_select">Selecione o local *</label>
+                                <select id="local_select">
+                                    <option value="">Selecione um local</option>
                                 </select>
                             </div>
 
