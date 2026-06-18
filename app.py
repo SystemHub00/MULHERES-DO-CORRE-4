@@ -595,100 +595,109 @@ TEMPLATE_WIZARD = """\
                     </div>
                 </section>
 
-                <!-- ══════════════ PASSO 3: ESCOLHER CURSO ══════════════ -->
+                <!-- ══════════ PASSO 3: ESCOLHER CURSO ══════════ -->
                 <section class="wizard-panel" data-step="escolher">
                     <div class="step-card">
-                        <h2 class="panel-title">Escolha seu curso</h2>
+                        <h2 class="panel-title">Informações do curso</h2>
 
                         <div class="step-grid step-grid--stacked">
 
-                            <!-- 1. Curso -->
-                            <div class="form-group full">
-                                <label for="curso_id">Curso *</label>
-                                <select id="curso_id" name="curso_id">
-                                    <option value="">Selecione um curso</option>
-                                    {% for curso in course_catalog %}
+                             <div class="form-group full">
+                                <label for="curso_select">Selecione o curso *</label>
+                                <select id="curso_select" name="curso_select">
+                                    <option value="" {% if not curso_selecionado %}selected{% endif %}>
+                                        Selecione um curso
+                                    </option>
+                                    {% for curso in cursos_disponiveis %}
                                     <option value="{{ curso.id }}"
-                                        {% if form_data.get('curso_id') == curso.id %}selected{% endif %}>
+                                        {% if curso_selecionado == curso.id %}selected{% endif %}>
                                         {{ curso.nome }}
                                     </option>
                                     {% endfor %}
                                 </select>
-                                <div class="balao-erro" id="curso_id-error"
-                                     {% if not errors.get('curso_id') %}hidden{% endif %}>
-                                    {{ errors.get('curso_id', '') }}
+                            </div>
+
+                            <!-- 2. Selecionar local -->
+                            <div class="form-group full" id="local-select-group">
+                                <label for="local_select">Selecione o local *</label>
+                                <select id="local_select">
+                                    <option value="">Selecione um local</option>
+                                </select>
+                            </div>
+
+                            <!-- 3. Selecionar turma -->
+                            <div class="form-group full" id="turma-select-group" style="display:none;">
+                                <label for="turma_select">Selecione a turma *</label>
+                                <select id="turma_select">
+                                    <option value="">Selecione uma turma</option>
+                                </select>
+                                <div class="balao-erro" id="opcao_id-error"
+                                     {% if not errors.get('opcao_id') %}hidden{% endif %}>
+                                    {{ errors.get('opcao_id', '') }}
                                 </div>
                             </div>
 
-                            <!-- 2. Local (aparece após selecionar curso) -->
-                            <div class="form-group full" id="local-group" style="display:none;">
-                                <label for="local_id_select">Local *</label>
-                                <select id="local_id_select">
-                                    <option value="">Selecione um local</option>
-                                </select>
-                                <div class="balao-erro" id="local_id-error" hidden></div>
+                            <!-- Hidden field para opcao_id quando turma é auto-selecionada -->
+                            <input type="hidden" id="hidden_opcao_id" name="opcao_id" value="{{ form_data.get('opcao_id', '') }}">
+
+                            <!-- Campos informativos -->
+                            <div class="form-group full" id="info-curso-group" style="display:none;">
+                                <label for="curso">Curso</label>
+                                <input type="text" id="curso" name="curso"
+                                       class="readonly-field" readonly
+                                       value="{{ form_data.get('curso', '') }}">
                             </div>
 
-                            <!-- 3. Horário (aparece após selecionar local) -->
-                            <div class="form-group full" id="turma-group" style="display:none;">
-                                <label for="opcao_id_select">Horário *</label>
-                                <select id="opcao_id_select">
-                                    <option value="">Selecione um horário</option>
-                                </select>
-                                <div class="balao-erro" id="opcao_id-error" hidden></div>
+                            <div class="form-group full" id="info-turma-group" style="display:none;">
+                                <label for="turma">Turma</label>
+                                <input type="text" id="turma" name="turma"
+                                       class="readonly-field" readonly
+                                       value="{{ form_data.get('turma', '') }}">
                             </div>
 
-                            <!-- Hidden fields -->
-                            <input type="hidden" id="opcao_id" name="opcao_id" value="{{ form_data.get('opcao_id', '') }}">
-                            <input type="hidden" id="local_id" name="local_id" value="{{ form_data.get('local_id', '') }}">
-                            <input type="hidden" id="local"    name="local"    value="{{ form_data.get('local', '') }}">
-                            <input type="hidden" id="curso"    name="curso"    value="{{ form_data.get('curso', '') }}">
-                            <input type="hidden" id="turma"    name="turma"    value="{{ form_data.get('turma', '') }}">
-
-                            <!-- Informações readonly (aparecem após selecionar horário) -->
                             <div class="form-group full" id="info-local-group" style="display:none;">
-                                <label for="local_display">LOCAL SELECIONADO</label>
-                                <input type="text" id="local_display" class="readonly-field" readonly
+                                <label for="local_nome">Local</label>
+                                <input type="text" id="local_nome" class="readonly-field" readonly
                                        value="{{ form_data.get('local', '') }}">
                             </div>
 
                             <div class="form-group" id="info-dias-group" style="display:none;">
-                                <label for="dias_aula">DIA DE AULA</label>
+                                <label for="dias_aula">Dias de aula</label>
                                 <input type="text" id="dias_aula" name="dias_aula"
                                        class="readonly-field" readonly
                                        value="{{ form_data.get('dias_aula', '') }}">
                             </div>
 
                             <div class="form-group" id="info-horario-group" style="display:none;">
-                                <label for="horario">HORÁRIO</label>
+                                <label for="horario">Horário</label>
                                 <input type="text" id="horario" name="horario"
                                        class="readonly-field" readonly
                                        value="{{ form_data.get('horario', '') }}">
                             </div>
 
                             <div class="form-group" id="info-inicio-group" style="display:none;">
-                                <label for="data_inicio">DATA DE INÍCIO</label>
+                                <label for="data_inicio">Data de início</label>
                                 <input type="text" id="data_inicio" name="data_inicio"
                                        class="readonly-field" readonly
                                        value="{{ form_data.get('data_inicio', '') }}">
                             </div>
 
                             <div class="form-group" id="info-enc-group" style="display:none;">
-                                <label for="encerramento">ENCERRAMENTO</label>
+                                <label for="encerramento">Data de encerramento</label>
                                 <input type="text" id="encerramento" name="encerramento"
                                        class="readonly-field" readonly
                                        value="{{ form_data.get('encerramento', '') }}">
                             </div>
 
                             <div class="form-group full" id="info-endereco-group" style="display:none;">
-                                <label for="endereco_curso">ENDEREÇO</label>
+                                <label for="endereco_curso">Endereço da unidade</label>
                                 <div class="input-with-action">
                                     <input type="text" id="endereco_curso" name="endereco_curso"
                                            class="readonly-field" readonly
                                            value="{{ form_data.get('endereco_curso', '') }}">
                                     <button type="button" class="icon-button"
                                             id="btn-copiar-endereco" title="Copiar endereço">
-                                        COPIAR &#128203;
+                                        Copiar &#128203;
                                     </button>
                                 </div>
                             </div>
@@ -697,7 +706,7 @@ TEMPLATE_WIZARD = """\
 
                         <div class="panel-actions">
                             <button type="button" class="secondary-button" data-prev="dados">Voltar</button>
-                            <button type="button" class="cta-button"       data-next="revisao">Ir para revisão</button>
+                            <button type="button" class="cta-button" data-next="revisao">Ir para revisão</button>
                         </div>
                     </div>
                 </section>
