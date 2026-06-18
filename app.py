@@ -602,20 +602,17 @@ TEMPLATE_WIZARD = """\
 
                         <div class="step-grid step-grid--stacked">
 
-                             <div class="form-group full">
-                                <label for="curso_select">Selecione o curso *</label>
-                                <select id="curso_select" name="curso_select">
-                                    <option value="" {% if not curso_selecionado %}selected{% endif %}>
-                                        Selecione um curso
-                                    </option>
-                                    {% for curso in cursos_disponiveis %}
-                                    <option value="{{ curso.id }}"
-                                        {% if curso_selecionado == curso.id %}selected{% endif %}>
-                                        {{ curso.nome }}
-                                    </option>
-                                    {% endfor %}
-                                </select>
-                            </div>
+                        <div class="form-group full">
+                            <label for="curso_select">Selecione o curso *</label>
+                            <select id="curso_select" name="curso_select">
+                                <option value="" selected>Selecione um curso</option>
+                                {% for curso in cursos_disponiveis %}
+                                <option value="{{ curso.id }}">
+                                    {{ curso.nome }}
+                                </option>
+                                {% endfor %}
+                            </select>
+                        </div>
 
                             <!-- 2. Selecionar local -->
                             <div class="form-group full" id="local-select-group">
