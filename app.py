@@ -617,7 +617,7 @@ TEMPLATE_WIZARD = """\
                             </div>
 
                             <!-- 2. Selecionar local -->
-                            <div class="form-group full" id="local-select-group" style="display:none;">
+                            <div class="form-group full" id="local-select-group">
                                 <label for="local_select">Selecione o local *</label>
                                 <select id="local_select">
                                     <option value="">Selecione um local</option>
