@@ -606,10 +606,9 @@ TEMPLATE_WIZARD = """\
                             <div class="form-group full">
                                 <label for="curso_select">Selecione o curso *</label>
                                 <select id="curso_select" name="curso_select">
-                                    <option value="">Selecione um curso</option>
+                                    <option value="" selected disabled>Selecione um curso</option>
                                     {% for curso in cursos_disponiveis %}
-                                    <option value="{{ curso.id }}"
-                                        {% if curso_selecionado == curso.id %}selected{% endif %}>
+                                    <option value="{{ curso.id }}">
                                         {{ curso.nome }}
                                     </option>
                                     {% endfor %}
