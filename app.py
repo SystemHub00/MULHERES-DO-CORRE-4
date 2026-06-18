@@ -30,7 +30,7 @@ VALID_DDDS = {
 
 # Lista de cursos distintos
 CURSOS_DISPONIVEIS = [
-    {"id": "01", "nome": "EXTENSÃO DE CÍLIOS"},
+    {"id": "01", "nome": "TRANCISTA"},
 ]
 
 # Todas as opcoes de turmas
@@ -38,25 +38,25 @@ COURSE_OPTIONS = [
     {
         "id": "1",
         "curso_id": "01",
-        "curso": "EXTENSÃO DE CÍLIOS",
+        "curso": "TRANCISTA",
         "turma": "TURMA 1.1",
-        "local": "MINISTÉRIO PÃO DA VIDA",
+        "local": "CENTRO SOCIAL AMIGO DA COMUNIDADE DE NOVA SEPETIBA",
         "dias_aula": "Segunda, Terça e Quarta",
         "horario": "09h às 16h",
         "data_inicio": "22/06/2026",
         "encerramento": "24/06/2026",
-        "endereco_curso": "📍Rua Pinto de Campos, 244 - Bento Ribeiro",
+        "endereco_curso": "📍Avenida 2, número 360 - Nova Sepetiba",
     },
 ]
 
 COURSE_OPTIONS_BY_ID = {option["id"]: option for option in COURSE_OPTIONS}
 COURSE_INFO = COURSE_OPTIONS[0]
-WHATSAPP_SHARE_HOME_URL = "https://mulheres-do-corre.onrender.com"
+WHATSAPP_SHARE_HOME_URL = "https://mulheres-do-corre-4.onrender.com"
 
 
 def build_whatsapp_share_url():
     message = (
-        "Acabei de me inscrever no programa Mulheres do Corre, com cursos gratuitos de "
+        "Acabei de me inscrever no programa Mulheres do Corre 4, com cursos gratuitos de "
         "qualificacao profissional da Prefeitura do Rio de Janeiro. Confira aqui: "
         f"{WHATSAPP_SHARE_HOME_URL}"
     )
@@ -84,7 +84,7 @@ TEMPLATE_WIZARD = """\
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>Mulheres do Corre</title>
+    <title>Mulheres do Corre 4</title>
     <link rel="stylesheet" href="/static/style.css">
     <link rel="stylesheet" href="/static/assistant.css">
     <link href="https://fonts.googleapis.com/css2?family=Wise:wght@400;700;900&display=swap" rel="stylesheet">
@@ -457,15 +457,15 @@ TEMPLATE_WIZARD = """\
                 <section class="wizard-panel" data-step="index">
                     <div class="hero-grid">
                         <div class="hero-card">
-                            <span class="hero-pill">PROGRAMA: MULHERES DO CORRE</span>
-                            <h1 class="hero-title">MULHERES DO CORRE</h1>
+                            <span class="hero-pill">PROGRAMA: MULHERES DO CORRE 4</span>
+                            <h1 class="hero-title">MULHERES DO CORRE 4</h1>
                             <p class="hero-subtitle">
                                 Mulheres que constroem o próprio futuro
                             </p>
                             <div class="hero-highlights">
                                 <div class="hero-highlight">
                                     <strong>CURSOS DISPONÍVEIS</strong><br>
-                                    📚 EXTENSÃO DE CÍLIOS
+                                    📚 TRANCISTA
                                 </div>
                                 <div class="hero-highlight">
                                     <strong>BENEFÍCIOS</strong>
@@ -764,7 +764,7 @@ TEMPLATE_WIZARD = """\
                                      style="margin-bottom:10px; color:#7a2520; font-size:0.98rem; text-align:left;">
                                     <strong>Elegibilidade:</strong>
                                     Esta inscrição é destinada a pessoas interessadas nos cursos de
-                                    qualificação profissional do programa Mulheres do Corre.
+                                    qualificação profissional do programa Mulheres do Corre 4.
                                 </div>
 
                                 <label class="review-check" for="confirma_dados">
@@ -772,7 +772,7 @@ TEMPLATE_WIZARD = """\
                                            value="sim"
                                            {% if form_data.get('confirma_dados') %}checked{% endif %}>
                                     <span>
-                                        Confirmo que tenho interesse em participar do programa Mulheres do Corre
+                                        Confirmo que tenho interesse em participar do programa Mulheres do Corre 4
                                         e em uma das turmas de qualificação disponíveis.<br>
                                         Todas as informações fornecidas são verdadeiras e estou de acordo
                                         com os termos de participação.<br>
